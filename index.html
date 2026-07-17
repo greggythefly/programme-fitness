@@ -587,7 +587,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="17 juillet 2026, trail + repas tracés (resto sans extra)";
+const BILAN_MAJ="17 juillet 2026, journée complète — bilan à jour";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:613,km:7.14,seanceFaite:true,
@@ -941,7 +941,7 @@ function construireBilan(){
       <div class="chiffre"><div class="val">${outTot}</div><div class="lab">kcal brûlées (séances)</div></div>
       <div class="chiffre"><div class="val">${fmt(dPoids)} kg · ${fmt(dTaille)} cm</div><div class="lab">évolution vs départ</div></div>
     </div>
-    <div class="bilan-resume">✅ <b>Accompli à date :</b> 2 séances sur 2 ! Course inaugurale de 7,14 km (au-dessus du plan) le 15, séance muscu haut du corps complète le 16 (21 séries, 50 pompes, menée à la vraie fatigue musculaire). Protocole nutrition respecté jour 1, mesure de contrôle faite le 16 au matin, petit-déj pré-muscu tracé. Un sans-faute sur les deux premiers jours — les courbes ci-dessous se remplissent à chaque séance, repas et mesure.</div>
+    <div class="bilan-resume">✅ <b>Accompli à date : 3 séances sur 3, trois journées pleines.</b> Course inaugurale de 7,14 km le 15 (rapide — 172 bpm, trop haut), muscu haut du corps complète le 16 (21 séries, 50 pompes), et le 17 le déclic : <b>trail de 5 km à 149 bpm de moyenne</b> — vous avez appliqué la consigne de lenteur, pile la zone brûle-graisse. Côté assiette, trois jours en déficit maîtrisé (~163, ~355 puis ~320 kcal), avec un resto joué parfaitement le 17 : l'assiette comme seul repas, zéro extra. Prochain rendez-vous : la <b>mesure de lundi 20</b>, premier vrai signal sur la balance et le mètre.</div>
   </div>
   <div class="bloc">
     <h2>📉 Évolution des mesures</h2>
@@ -951,7 +951,7 @@ function construireBilan(){
   <div class="bloc">
     <h2>🔥 Apports vs dépense</h2>
     ${graphCalories()}
-    <p class="bilan-note">* journée en cours, partielle. Apports : estimations d'après vos menus et photos. Dépense empilée : ~1 700 kcal de vie quotidienne (métabolisme + activité normale, teinte claire) + les séances (corail). L'écart entre les deux barres = le déficit du jour, affiché sous chaque date. Lecture du 15/07 : 2 313 dépensées − 2 150 mangées = <b>déficit ~163 kcal</b> — positif malgré l'apéro, et la marge grandira les jours sans extra. Cap : ~500-700 de déficit/jour en moyenne.</p>
+    <p class="bilan-note">Apports : estimations d'après vos menus et photos. Dépense empilée : ~1 700 kcal de vie quotidienne (métabolisme + activité normale, teinte claire) + les séances (corail). L'écart entre les deux barres = le déficit du jour, affiché sous chaque date. Trois premiers jours : ~163 kcal le 15 (malgré l'apéro), ~355 le 16, ~320 le 17 (resto sans extra) — la tendance est bonne et régulière. Cap : ~500-700 de déficit/jour en moyenne ; la marge s'ouvrira naturellement sur les grosses journées cardio.</p>
   </div>`;
   document.getElementById("vue-bilan").innerHTML=h;
 }
