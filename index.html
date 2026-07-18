@@ -600,7 +600,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="18 juillet 2026, déjeuner BBQ tracé";
+const BILAN_MAJ="18 juillet 2026, séance vélo + collation tracées";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:613,km:7.14,seanceFaite:true,
@@ -612,15 +612,34 @@ const JOURNAL={
 "7-17":{in:1810,out:430,km:5.01,seanceFaite:true,
   inD:"petit-déj estimé ~400 · déjeuner ~660 (salade de riz, œuf dur, pomme) · dîner resto ~750 (riz curcuma, légumes, galettes, avocat, salade)",
   outD:"Trail 5,01 km sur la côte — Strava (430 kcal, 149 bpm moy.)"},
-"7-18":{in:910,out:0,km:0,seanceFaite:false,partiel:true,
-  inD:"petit-déj ~210 (yaourt grec, ½ banane, café) · déjeuner ~700 (brochettes de poulet, taboulé, carottes râpées, salade de riz, ½ brugnon) — soir à venir",
-  outD:"Vélo d'appartement endurance prévu"}
+"7-18":{in:1060,out:500,km:0,seanceFaite:true,partiel:true,
+  inD:"petit-déj ~210 (yaourt grec, ½ banane, café) · déjeuner ~700 (brochettes poulet, taboulé, carottes, salade de riz, ½ brugnon) · collation post-vélo ~150 (yaourt grec, ½ banane) — soir à venir",
+  outD:"Vélo d'appartement 21 km, 1h00 (Strava — ~500 kcal, 119 bpm moy.)"}
 };
 
 /* Jours de mesure : lundis et jeudis matin (poids à jeun + tour de taille) */
 const MESURES=["7-16","7-20","7-23","7-27","7-30","8-3","8-6","8-10","8-13","8-17","8-20","8-24","8-27","8-31"];
 /* Comptes rendus de séances réalisées */
 const RECAPS={
+"7-18":`
+<div class="recap">
+  <div class="recap-badge">✅ Séance réalisée — Vélo d'appartement · 17:05, Strava</div>
+  <div class="recap-stats">
+    <div><b>21</b><span>km (indoor)</span></div>
+    <div><b>1:00:16</b><span>durée</span></div>
+    <div><b>119</b><span>bpm moy.</span></div>
+    <div><b>162</b><span>bpm max</span></div>
+    <div><b>~500</b><span>kcal est.</span></div>
+    <div><b>21</b><span>effort Strava</span></div>
+  </div>
+  <div class="recap-analyse">
+    <b>📊 Bilan de séance :</b><br>
+    <b>Sport 🚴</b> — Une heure pleine de vélo d'appartement, 21 km au compteur. <b>119 bpm de moyenne : en plein cœur de la cible 110-140</b>, la zone lipolyse demandée — c'est la troisième séance d'affilée où le cardio est exactement là où il doit être. Et le protocole a été suivi à la lettre : <b>4 relances d'1 min à 10, 20, 30 et 40 min</b>, exactement comme prescrit — le pic à 162 bpm signe ces accélérations, et le contraste moyenne basse / pics courts est précisément le dessin attendu. Effort Strava 21 = séance modérée qui n'entame pas la récupération.<br><br>
+    <b>Collation 🍌</b> — Yaourt à la grecque + demi-banane dans la foulée (~150 kcal) : le réflexe post-séance désormais bien ancré, protéines + glucides dans la fenêtre de récupération. C'est d'ailleurs la deuxième moitié de la banane du petit-déj — zéro gâchis, tout est calibré. 😄<br><br>
+    <b>Verdict ✅</b> — Première conversion course→vélo réussie : même dépense qu'un long run tranquille, zéro impact articulaire, cardio parfaitement discipliné. Ce vélo est une vraie option pour les jours où les jambes réclament une pause de course.
+  </div>
+  <a class="recap-lien" href="https://www.strava.com/activities/19365655680" target="_blank">Voir l'activité sur Strava →</a>
+</div>`,
 "7-17":`
 <div class="recap">
   <div class="recap-badge">✅ Séance réalisée — Trail 5 km · 17:42, Strava</div>
