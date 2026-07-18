@@ -429,6 +429,11 @@ hiitMixR:{cat:"HIIT",coul:"var(--hiit)",titre:"Fractionné course + circuit",dur
  blocs:[{t:"Partie 1 — Course",d:"Après 10 min d'échauffement, 12-15 min de fractionné 30/30 sur route plate."},
         {t:"Partie 2 — Circuit",d:"Circuit ci-dessous, enchaîné 3 fois, 30 s de repos entre exercices."}],
  nutri:"Grosse dépense aujourd'hui : repas complet le soir (protéines + légumes + féculents), sans excès."},
+veloApp:{cat:"CARDIO",coul:"var(--cardio)",titre:"Vélo d'appartement — endurance",duree:"55-70 min",svg:"velo",
+ blocs:[{t:"Échauffement",d:"10 min en montant progressivement la résistance, cadence souple (80-90 tr/min)."},
+        {t:"Corps de séance",d:"40-50 min en endurance continue, FC cible 110-140 bpm (zone lipolyse — la même consigne que la course : on doit pouvoir parler). Résistance modérée, cadence régulière 80-90 tr/min. Toutes les 10 min, 1 min en danseuse ou résistance +2 pour casser la monotonie, puis retour au calme cardiaque."},
+        {t:"Retour au calme",d:"5 min résistance minimale + étirements quadriceps, ischios, fessiers."}],
+ nutri:"Séance de volume équivalente au long run : montez légèrement les féculents au déjeuner, hydratez-vous toutes les 15 min (on transpire beaucoup en intérieur — serviette et bouteille obligatoires)."},
 mhaut:{cat:"MUSCU",coul:"var(--muscu)",titre:"Haut du corps + abdos",duree:"45-50 min",svg:"pompes",
  exos:[["pompes","4 × 12-15"],["tirage","3 × 12-15"],["dips","3 × 10-12"],["curl","3 × 12-15"],["gainage","3 × 45-60 s"],["crunch","3 × 15-20"],["releve","3 × 12-15"]],
  blocs:[{t:"Organisation",d:"Récupération 60-90 s entre séries. Qualité d'exécution avant la quantité."}],
@@ -503,7 +508,7 @@ const JOURS = {
 "7-15":["sc","c57","Première séance ! Course sur le sentier des douaniers ou la route côtière. ✅ Mesures de départ prises : 75,5 kg — 96 cm de tour de taille."],
 "7-16":["sc","mhaut","Chez vous ou en extérieur, avec l'élastique."],
 "7-17":["sc","c57","Course facile en endurance le long de la côte — allure lente (7:15-7:30/km, sous ~145 bpm). Rappel : le 15/07 vous étiez à 172 bpm, trop haut : aujourd'hui on ralentit vraiment."],
-"7-18":["sc","long8","Idée parcours : direction la pointe de Saint-Cast par le GR34."],
+"7-18":["sc","veloApp","Vélo d'appartement (endurance, même durée que le long run prévu). La boucle GPX de 8,7 km reste prête pour une prochaine sortie longue."],
 "7-19":["sc","repos",""],
 "7-20":["sc","hiitR1","Fractionné 30/30 sur le front de mer ou la route côtière (plat)."],
 "7-21":["sc","mbas",""],
@@ -587,7 +592,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="17 juillet 2026, journée complète — bilan à jour";
+const BILAN_MAJ="18 juillet 2026, séance du jour convertie en vélo d'appartement";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:613,km:7.14,seanceFaite:true,
