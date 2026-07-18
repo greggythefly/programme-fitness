@@ -998,6 +998,27 @@ document.addEventListener("click",function(e){
   if(v){montrerVue(v.getAttribute("data-vue"));return;}
 });
 construireCalendrier();
+
+/* ============ Détection de nouvelle version (contourne les caches iOS/CDN) ============ */
+(function(){
+  if(location.protocol!=="https:"&&location.protocol!=="http:")return; // fichier local / artefact : rien à faire
+  function verifier(){
+    fetch(location.href.split("#")[0],{cache:"no-store"}).then(r=>r.text()).then(txt=>{
+      const m=txt.match(/BILAN_MAJ="([^"]*)"/);
+      if(m&&m[1]&&m[1]!==BILAN_MAJ){
+        if(document.getElementById("maj-banner"))return;
+        const b=document.createElement("div");
+        b.id="maj-banner";
+        b.style.cssText="position:fixed;top:0;left:0;right:0;z-index:9999;background:#0E2A3A;color:#fff;padding:12px 16px;text-align:center;font-weight:700;font-size:.9em;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)";
+        b.textContent="📥 Nouvelle version disponible — touchez ici pour recharger";
+        b.addEventListener("click",()=>location.reload());
+        document.body.appendChild(b);
+      }
+    }).catch(()=>{});
+  }
+  verifier();
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")verifier();});
+})();
 </script>
 </body>
 </html>
