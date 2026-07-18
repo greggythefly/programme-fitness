@@ -600,7 +600,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="18 juillet 2026, séance vélo + collation tracées";
+const BILAN_MAJ="18 juillet 2026, bilan : km course et vélo différenciés";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:613,km:7.14,seanceFaite:true,
@@ -612,7 +612,7 @@ const JOURNAL={
 "7-17":{in:1810,out:430,km:5.01,seanceFaite:true,
   inD:"petit-déj estimé ~400 · déjeuner ~660 (salade de riz, œuf dur, pomme) · dîner resto ~750 (riz curcuma, légumes, galettes, avocat, salade)",
   outD:"Trail 5,01 km sur la côte — Strava (430 kcal, 149 bpm moy.)"},
-"7-18":{in:1060,out:500,km:0,seanceFaite:true,partiel:true,
+"7-18":{in:1060,out:500,km:0,kmVelo:21,seanceFaite:true,partiel:true,
   inD:"petit-déj ~210 (yaourt grec, ½ banane, café) · déjeuner ~700 (brochettes poulet, taboulé, carottes, salade de riz, ½ brugnon) · collation post-vélo ~150 (yaourt grec, ½ banane) — soir à venir",
   outD:"Vélo d'appartement 21 km, 1h00 (Strava — ~500 kcal, 119 bpm moy.)"}
 };
@@ -967,6 +967,7 @@ function construireBilan(){
   const cles=Object.keys(JOURNAL);
   const nbSeances=cles.filter(c=>JOURNAL[c].seanceFaite).length;
   const kmTot=cles.reduce((a,c)=>a+(JOURNAL[c].km||0),0);
+  const kmVeloTot=cles.reduce((a,c)=>a+(JOURNAL[c].kmVelo||0),0);
   const outTot=cles.reduce((a,c)=>a+(JOURNAL[c].out||0),0);
   const dernierR=Object.keys(RELEVES).sort((a,b)=>cleVersIdx(a)-cleVersIdx(b)).pop();
   const rv=dernierR?RELEVES[dernierR]:null;
@@ -980,6 +981,7 @@ function construireBilan(){
     <div class="chiffres">
       <div class="chiffre"><div class="val">${nbSeances}</div><div class="lab">séance${nbSeances>1?"s":""} réalisée${nbSeances>1?"s":""}</div></div>
       <div class="chiffre"><div class="val">${String(kmTot.toFixed(2)).replace(".",",")}</div><div class="lab">km courus</div></div>
+      ${kmVeloTot>0?`<div class="chiffre"><div class="val">${String((kmVeloTot%1?kmVeloTot.toFixed(1):kmVeloTot)).replace(".",",")}</div><div class="lab">km à vélo</div></div>`:""}
       <div class="chiffre"><div class="val">${outTot}</div><div class="lab">kcal brûlées (séances)</div></div>
       <div class="chiffre"><div class="val">${fmt(dPoids)} kg · ${fmt(dTaille)} cm</div><div class="lab">évolution vs départ</div></div>
     </div>
