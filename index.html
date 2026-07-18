@@ -268,7 +268,7 @@ svg .bande{stroke:var(--hiit);stroke-width:2;fill:none;stroke-dasharray:2 3}
       <li><b>Jours repos &amp; bilan</b> → <span style="color:#2a9d8f;font-weight:700">🎛️ Compo Ableton</span> : tête fraîche et temps dispo pour la création et les révisions.</li>
       <li><b>Jours muscu &amp; course</b> → <span style="color:#3f7fa6;font-weight:700">🎸 Variété</span> &amp; <span style="color:#7a5c9e;font-weight:700">🎶 Clarinette</span> : les deux disciplines débutantes, celles qui profitent le plus d'une pratique fréquente.</li>
     </ul>
-    <p style="font-size:.92em;color:#5a7484">Sur les 46 jours (17 juillet → 31 août) : ~14 séances de variété et ~14 de clarinette (les débutantes, priorité à la régularité), ~9 de jazz et ~9 de compo (confirmées, entretien et révisions). Jamais deux jours de suite la même discipline. Le détail s'affiche dans chaque fiche jour, et un point coloré 🎵 rappelle la discipline sur le calendrier.</p>
+    <p style="font-size:.92em;color:#5a7484">Sur les 45 jours planifiés (18 juillet → 31 août) : ~13 séances de variété et ~13 de clarinette (les débutantes, priorité à la régularité), ~10 de jazz et ~9 de compo (confirmées, entretien et révisions). Jamais deux jours de suite la même discipline. Le détail s'affiche dans chaque fiche jour, et un point coloré 🎵 rappelle la discipline sur le calendrier.</p>
   </div>
   <div class="bloc">
     <h2>🗓️ Comment lire le calendrier</h2>
@@ -572,7 +572,7 @@ const MUSIC={
  compo:{nom:"Compo electro — Ableton Live",emoji:"🎛️",niveau:"confirmé · à réviser",coul:"#2a9d8f",focus:"Jour posé = tête fraîche pour Ableton. Séance révision : un atelier workflow (warping, automation, racks, raccourcis) puis on FINIT une idée de 8-16 mesures. Objectif : dérouiller les réflexes sans les laisser filer."}
 };
 const MUSIQUE={
-  "7-17":"clar","7-18":"variete","7-19":"compo","7-20":"jazz",
+  "7-18":"jazz","7-19":"compo","7-20":"jazz",
   "7-21":"variete","7-22":"jazz","7-23":"variete","7-24":"clar","7-25":"variete","7-26":"compo",
   "7-27":"jazz","7-28":"variete","7-29":"clar","7-30":"variete","7-31":"jazz","8-1":"clar",
   "8-2":"compo","8-3":"variete","8-4":"jazz","8-5":"clar","8-6":"compo","8-7":"clar",
@@ -600,7 +600,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="18 juillet 2026, bilan : km course et vélo différenciés";
+const BILAN_MAJ="18 juillet 2026, navigation jour précédent/suivant dans les fiches";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:613,km:7.14,seanceFaite:true,
@@ -791,6 +791,10 @@ function ouvrirJour(cle){
   const t=T[tK], lieu=LIEUX[lieuK];
   const date=new Date(2026,mois-1,jour);
   const nomJ=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"][date.getDay()];
+  const ordreJours=Object.keys(JOURS).sort((a,b)=>cleVersIdx(a)-cleVersIdx(b));
+  const posJ=ordreJours.indexOf(cle);
+  const prevC=posJ>0?ordreJours[posJ-1]:null, nextC=posJ<ordreJours.length-1?ordreJours[posJ+1]:null;
+  const labJ=k=>{const[m2,d2]=k.split("-").map(Number);return d2+" "+MOIS_FR[m2].toLowerCase().slice(0,4)+".";};
   let h=`<div class="fiche-head" style="background:${t.coul}">
     <button class="retour" data-vue="cal">← Calendrier</button>
     <h2>${nomJ} ${jour} ${MOIS_FR[mois].toLowerCase()}</h2>
@@ -798,6 +802,10 @@ function ouvrirJour(cle){
       <span class="chip">${lieu.e} ${lieu.n}</span>
       <span class="chip">${t.cat}</span>
       <span class="chip">⏱ ${t.duree}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:8px;margin-top:10px">
+      ${prevC?`<button class="retour" data-jour="${prevC}">← ${labJ(prevC)}</button>`:`<span></span>`}
+      ${nextC?`<button class="retour" data-jour="${nextC}">${labJ(nextC)} →</button>`:`<span></span>`}
     </div>
   </div><div class="fiche-corps">`;
 
@@ -884,6 +892,10 @@ function ouvrirJour(cle){
   }
   h+=`<div class="nutri"><b>Conseil :</b> ${t.nutri}</div></div>`;
   h+=`<button class="retour" style="background:${t.coul};color:#fff;border:none;border-radius:22px;padding:12px 22px;font-size:.95em;font-weight:700;width:100%;cursor:pointer" data-vue="cal">← Retour au calendrier</button>`;
+  h+=`<div style="display:flex;justify-content:space-between;gap:10px;margin-top:10px">
+    ${prevC?`<button class="retour" style="flex:1;background:#fff;color:${t.coul};border:2px solid ${t.coul};border-radius:22px;padding:10px 14px;font-weight:700;cursor:pointer" data-jour="${prevC}">← ${labJ(prevC)}</button>`:`<span style="flex:1"></span>`}
+    ${nextC?`<button class="retour" style="flex:1;background:#fff;color:${t.coul};border:2px solid ${t.coul};border-radius:22px;padding:10px 14px;font-weight:700;cursor:pointer" data-jour="${nextC}">${labJ(nextC)} →</button>`:`<span style="flex:1"></span>`}
+  </div>`;
   h+=`</div>`;
   document.getElementById("vue-jour").innerHTML=h;
   montrerVue("jour");
