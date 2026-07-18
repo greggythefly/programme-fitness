@@ -119,6 +119,9 @@ main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior
 .jour .t{font-size:.5em;font-weight:700;letter-spacing:.3px;color:#fff;border-radius:3px;padding:1px 4px;max-width:100%;overflow:hidden}
 .jour.vide{background:transparent;box-shadow:none;pointer-events:none}
 .jour.horsprog{opacity:.28;pointer-events:none}
+.jour.passe{background:#F9FBFB;box-shadow:0 1px 1px rgba(14,42,58,.04)}
+.jour.passe .t{opacity:.75}
+.jour.auj{border:2px solid var(--encre);box-shadow:0 2px 6px rgba(14,42,58,.14)}
 .bandeau-lieu{
   grid-column:1/-1;font-size:.68em;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
   color:#fff;border-radius:6px;padding:4px 8px;margin:4px 0 1px;
@@ -592,7 +595,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="18 juillet 2026, petit-déj tracé";
+const BILAN_MAJ="18 juillet 2026, calendrier : jours passés grisés + liseré sur le jour courant";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:613,km:7.14,seanceFaite:true,
@@ -722,6 +725,9 @@ function construireCalendrier(){
     html+=`<div class="sous">${mois===7?"🌊 Saint-Cast-le-Guildo dès le 15":"🌊 St-Cast → 🏔️ Montagne (7) → 🏖️ Biarritz (15) → 🌾 Normandie (24)"}</div>`;
     html+=`<div class="grille">`;
     JS_FR.forEach(j=>html+=`<div class="jsem">${j}</div>`);
+    const auj=new Date();
+    const cleAuj=(auj.getFullYear()===2026&&auj.getMonth()>=6&&auj.getMonth()<=7)?`${auj.getMonth()+1}-${auj.getDate()}`:null;
+    const idxAuj=cleAuj?cleVersIdx(cleAuj):-1;
     const premier=new Date(annee,mois-1,1).getDay(); // 0=dim
     const decal=(premier+6)%7;
     for(let i=0;i<decal;i++)html+=`<div class="jour vide"></div>`;
@@ -734,7 +740,9 @@ function construireCalendrier(){
       const badge=MESURES.includes(cle)?`<span class="mesure-dot" title="Mesure">📏</span>`:"";
       const fait=(typeof RECAPS!=="undefined"&&RECAPS[cle])?`<span class="fait-dot" title="Réalisée">✅</span>`:"";
       const mdot=(MUSIQUE[cle]&&MUSIC[MUSIQUE[cle]])?`<span class="music-dot" title="🎵 ${MUSIC[MUSIQUE[cle]].nom} (15 min)" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${MUSIC[MUSIQUE[cle]].coul};vertical-align:middle;margin-left:2px"></span>`:"";
-      html+=`<button class="jour" data-jour="${cle}">
+      let etatCls="";
+      if(cleAuj&&JOURS[cle]){const ix=cleVersIdx(cle);if(cle===cleAuj)etatCls=" auj";else if(idxAuj>=0&&ix<idxAuj)etatCls=" passe";}
+      html+=`<button class="jour${etatCls}" data-jour="${cle}">
         ${badge}${fait}${mdot}<span class="n">${d}</span>
         <span class="t" style="background:${t.coul}">${lab}</span>
       </button>`;
