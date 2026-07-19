@@ -604,7 +604,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="19 juillet 2026, données montre intégrées — journée bouclée";
+const BILAN_MAJ="19 juillet 2026, données montre des 18 et 19 intégrées";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:613,km:7.14,seanceFaite:true,
@@ -616,9 +616,9 @@ const JOURNAL={
 "7-17":{in:1810,out:430,km:5.01,seanceFaite:true,
   inD:"petit-déj estimé ~400 · déjeuner ~660 (salade de riz, œuf dur, pomme) · dîner resto ~750 (riz curcuma, légumes, galettes, avocat, salade)",
   outD:"Trail 5,01 km sur la côte — Strava (430 kcal, 149 bpm moy.)"},
-"7-18":{in:1740,out:500,km:0,kmVelo:21,seanceFaite:true,
+"7-18":{in:1740,out:785,km:0,kmVelo:21,seanceFaite:true,
   inD:"petit-déj ~210 · déjeuner ~700 (BBQ) · collation ~150 · dîner ~550 (brochettes poulet, taboulé, carottes) · dessert ~130 (yaourt aux fruits fermier)",
-  outD:"Vélo d'appartement 21 km, 1h00 (Strava — ~500 kcal, 119 bpm moy.)"},
+  outD:"Vélo d'appartement 21 km, 1h00 (Strava, ~500 kcal, 119 bpm) + 16 303 pas · 12,3 km de marche — montre : 894 kcal d'activité, total jour 2 485 kcal (~785 au-delà de la base)"},
 "7-19":{in:1750,out:100,km:0,seanceFaite:false,
   inD:"pdj estimé ~300 · déjeuner ~900 (melon, poulet coco-curry, semoule, tarte pommes + fraises) · dîner ~500 (pizza maison au levain 3 petites parts + salade)",
   outD:"Repos actif : 10 450 pas · 7,5 km de marche (montre : 246 kcal d'activité, total jour 1 804 kcal — soit ~100 au-delà de la base)"}
@@ -1014,7 +1014,7 @@ function construireBilan(){
       <div class="chiffre"><div class="val">${outTot}</div><div class="lab">kcal brûlées (séances)</div></div>
       <div class="chiffre"><div class="val">${fmt(dPoids)} kg · ${fmt(dTaille)} cm</div><div class="lab">évolution vs départ</div></div>
     </div>
-    <div class="bilan-resume">✅ <b>Accompli à date : 4 séances sur 4, quatre journées pleines.</b> Course inaugurale le 15 (7,14 km — mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : <b>trail à 149 bpm le 17</b> et <b>vélo d'appartement à 119 bpm le 18</b> (21 km, 4 relances comme prescrit) — trois séances d'affilée dans la zone brûle-graisse. Côté assiette, quatre jours en déficit maîtrisé (~163, ~355, ~320 puis ~460 kcal), un resto sans extra le 17 et des carbonara sagement reportées le 18. Prochain rendez-vous : la <b>mesure de lundi 20</b>, premier vrai signal sur la balance et le mètre.</div>
+    <div class="bilan-resume">✅ <b>Accompli à date : 4 séances sur 4, quatre journées pleines.</b> Course inaugurale le 15 (7,14 km — mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : <b>trail à 149 bpm le 17</b> et <b>vélo d'appartement à 119 bpm le 18</b> (21 km, 4 relances comme prescrit) — trois séances d'affilée dans la zone brûle-graisse. Côté assiette, quatre jours en déficit maîtrisé et croissant (~163, ~355, ~320 puis ~745 kcal le 18 — vélo + 16 300 pas, la plus grosse journée de dépense à date), un resto sans extra le 17 et des carbonara sagement reportées le 18. Prochain rendez-vous : la <b>mesure de lundi 20</b>, premier vrai signal sur la balance et le mètre.</div>
   </div>
   <div class="bloc">
     <h2>📉 Évolution des mesures</h2>
@@ -1024,7 +1024,7 @@ function construireBilan(){
   <div class="bloc">
     <h2>🔥 Apports vs dépense</h2>
     ${graphCalories()}
-    <p class="bilan-note">Apports : estimations d'après vos menus et photos. Dépense empilée : ~1 700 kcal de vie quotidienne (métabolisme + activité normale, teinte claire) + les séances (corail). L'écart entre les deux barres = le déficit du jour, affiché sous chaque date. Quatre premiers jours : ~163 kcal le 15 (malgré l'apéro), ~355 le 16, ~320 le 17 (resto sans extra), ~460 le 18 — la tendance est bonne et va crescendo. Le 19, dimanche de repos avec l'extra tarte assumé mais 10 450 pas au compteur (montre : 1 804 kcal dépensées), finit en quasi-équilibre (~−50) : la soupape hebdomadaire, version active. Cap : ~500-700 de déficit/jour en moyenne ; la marge s'ouvrira naturellement sur les grosses journées cardio.</p>
+    <p class="bilan-note">Apports : estimations d'après vos menus et photos. Dépense empilée : ~1 700 kcal de vie quotidienne (métabolisme + activité normale, teinte claire) + les séances (corail). L'écart entre les deux barres = le déficit du jour, affiché sous chaque date. Quatre premiers jours : ~163 kcal le 15 (malgré l'apéro), ~355 le 16, ~320 le 17 (resto sans extra), ~745 le 18 (vélo + 16 300 pas, montre : 2 485 kcal dépensées) — la tendance est bonne et va crescendo. Le 19, dimanche de repos avec l'extra tarte assumé mais 10 450 pas au compteur (montre : 1 804 kcal dépensées), finit en quasi-équilibre (~−50) : la soupape hebdomadaire, version active. Cap : ~500-700 de déficit/jour en moyenne ; la marge s'ouvrira naturellement sur les grosses journées cardio.</p>
   </div>`;
   document.getElementById("vue-bilan").innerHTML=h;
 }
