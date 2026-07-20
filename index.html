@@ -600,11 +600,12 @@ const VIDEOS_PISCINE_10M=[
 ];
 
 const RELEVES={
-"7-16":{poids:"75,5",taille:96,commentaire:"Identique au départ du 15/07 — parfaitement normal à J+1 : la graisse ne bouge pas en 24 h, c'est la tendance sur les lundis qui comptera. Le vrai premier signal sera lundi 20."}
+"7-16":{poids:"75,5",taille:96,commentaire:"Identique au départ du 15/07 — parfaitement normal à J+1 : la graisse ne bouge pas en 24 h, c'est la tendance sur les lundis qui comptera. Le vrai premier signal sera lundi 20."},
+"7-20":{poids:"74,6",taille:95,commentaire:"Premier vrai signal, et il est excellent : −0,9 kg et −1 cm en 5 jours. Une partie du poids est de l'eau et du glycogène (classique en début de programme), mais le centimètre de tour de taille, lui, ne ment pas — c'est la graisse abdominale qui commence à bouger, pile l'objectif. Le rythme (~−0,2 cm et −180 g/jour) est même légèrement au-dessus du plan : on ne change RIEN, on confirme jeudi 23. Cap mi-parcours (6 août) : ~74 kg / ~93 cm — parfaitement en trajectoire."}
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="19 juillet 2026, les 5 journées recalées sur les données montre";
+const BILAN_MAJ="20 juillet 2026, mesure du lundi : 74,6 kg · 95 cm (−0,9 kg / −1 cm)";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
@@ -1014,7 +1015,7 @@ function construireBilan(){
       <div class="chiffre"><div class="val">${outTot}</div><div class="lab">kcal brûlées (séances)</div></div>
       <div class="chiffre"><div class="val">${fmt(dPoids)} kg · ${fmt(dTaille)} cm</div><div class="lab">évolution vs départ</div></div>
     </div>
-    <div class="bilan-resume">✅ <b>Accompli à date : 4 séances sur 4, quatre journées pleines.</b> Course inaugurale le 15 (7,14 km — mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : <b>trail à 149 bpm le 17</b> et <b>vélo d'appartement à 119 bpm le 18</b> (21 km, 4 relances comme prescrit) — trois séances d'affilée dans la zone brûle-graisse. Côté assiette, quatre jours en déficit maîtrisé et croissant (~268, ~340, ~335 puis ~745 kcal le 18, la plus grosse journée de dépense à date : 2 485 kcal, vélo et marche compris), un resto sans extra le 17 et des carbonara sagement reportées le 18. Prochain rendez-vous : la <b>mesure de lundi 20</b>, premier vrai signal sur la balance et le mètre.</div>
+    <div class="bilan-resume">✅ <b>Accompli à date : 4 séances sur 4, quatre journées pleines.</b> Course inaugurale le 15 (7,14 km — mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : <b>trail à 149 bpm le 17</b> et <b>vélo d'appartement à 119 bpm le 18</b> (21 km, 4 relances comme prescrit) — trois séances d'affilée dans la zone brûle-graisse. Côté assiette, quatre jours en déficit maîtrisé et croissant (~268, ~340, ~335 puis ~745 kcal le 18, la plus grosse journée de dépense à date : 2 485 kcal, vélo et marche compris), un resto sans extra le 17 et des carbonara sagement reportées le 18. Et le <b>premier verdict est tombé lundi 20 : 74,6 kg (−0,9) · 95 cm (−1)</b> — la graisse abdominale bouge, la mécanique fonctionne. Prochain point : jeudi 23.</div>
   </div>
   <div class="bloc">
     <h2>📉 Évolution des mesures</h2>
