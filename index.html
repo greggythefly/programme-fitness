@@ -605,7 +605,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="20 juillet 2026, mesure du lundi : 74,6 kg · 95 cm (−0,9 kg / −1 cm)";
+const BILAN_MAJ="20 juillet 2026, mesure du lundi inscrite (affichage corrigé)";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
@@ -1003,7 +1003,7 @@ function construireBilan(){
   const rv=dernierR?RELEVES[dernierR]:null;
   const dPoids=rv?(parseFloat(String(rv.poids).replace(",","."))-DEPART.poids):0;
   const dTaille=rv?(rv.taille-DEPART.taille):0;
-  const fmt=v=>(v>0?"+":v<0?"−":"±")+String(Math.abs(v)).replace(".",",");
+  const fmt=v=>{const a=Math.round(Math.abs(v)*10)/10;return (v>0?"+":v<0?"−":"±")+String(a%1?a.toFixed(1):a).replace(".",",");};
   let h=`
   <div class="bloc">
     <h2>📊 Où en est-on ?</h2>
