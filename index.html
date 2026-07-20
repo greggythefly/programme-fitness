@@ -589,8 +589,8 @@ const MUSIC={
 /* Séances musique réalisées */
 const MUSIQUE_FAITE={"7-18":true,"7-19":true};
 const MUSIQUE={
-  "7-18":"jazz","7-19":"variete","7-20":"jazz",
-  "7-21":"compo","7-22":"jazz","7-23":"variete","7-24":"clar","7-25":"variete","7-26":"compo",
+  "7-18":"jazz","7-19":"variete",
+  "7-21":["compo","jazz"],"7-22":"variete","7-23":"jazz","7-24":"clar","7-25":"variete","7-26":"compo",
   "7-27":"jazz","7-28":"variete","7-29":"clar","7-30":"variete","7-31":"jazz","8-1":"clar",
   "8-2":"compo","8-3":"variete","8-4":"jazz","8-5":"clar","8-6":"compo","8-7":"clar",
   "8-8":"jazz","8-9":"compo","8-10":"variete","8-11":"clar","8-12":"variete","8-13":"clar",
@@ -618,7 +618,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="20 juillet 2026, journée bouclée — données Withings intégrées (déficit ~580)";
+const BILAN_MAJ="20 juillet 2026, jazz reporté au 21 (double séance avec Ableton)";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
@@ -821,7 +821,7 @@ function construireCalendrier(){
       const badge=MESURES.includes(cle)?`<span class="mesure-dot" title="Mesure">📏</span>`:"";
       const fait=(typeof RECAPS!=="undefined"&&RECAPS[cle])?`<span class="fait-dot" title="Réalisée">✅</span>`:"";
       const mfait=(typeof MUSIQUE_FAITE!=="undefined"&&MUSIQUE_FAITE[cle])?`<span class="music-fait" title="Musique faite ✅" style="${MESURES.includes(cle)?"right:14px":""}">🎵</span>`:"";
-      const mdot=(MUSIQUE[cle]&&MUSIC[MUSIQUE[cle]])?`<span class="music-dot" title="🎵 ${MUSIC[MUSIQUE[cle]].nom} (15 min)" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${MUSIC[MUSIQUE[cle]].coul};vertical-align:middle;margin-left:2px"></span>`:"";
+      const mdot=(Array.isArray(MUSIQUE[cle])?MUSIQUE[cle]:[MUSIQUE[cle]]).filter(k=>k&&MUSIC[k]).map(k=>`<span class="music-dot" title="🎵 ${MUSIC[k].nom} (15 min)" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${MUSIC[k].coul};vertical-align:middle;margin-left:2px"></span>`).join("");
       let etatCls="";
       if(cleAuj&&JOURS[cle]){const ix=cleVersIdx(cle);if(cle===cleAuj)etatCls=" auj";else if(idxAuj>=0&&ix<idxAuj)etatCls=" passe";}
       html+=`<button class="jour${etatCls}" data-jour="${cle}">
@@ -916,15 +916,17 @@ function ouvrirJour(cle){
     });
     h+=`</div>`;
   }
-  const _mz=MUSIQUE[cle];
-  if(_mz&&MUSIC[_mz]){
-    const mz=MUSIC[_mz];
+  const _mzRaw=MUSIQUE[cle];
+  const _mzList=(Array.isArray(_mzRaw)?_mzRaw:[_mzRaw]).filter(k=>k&&MUSIC[k]);
+  if(_mzList.length){
     const mzFaite=(typeof MUSIQUE_FAITE!=="undefined"&&MUSIQUE_FAITE[cle]);
-    h+=`<div class="sect"><h3>🎵 Musique du jour · 15 min${mzFaite?` <span style="background:#5A8F5D;color:#fff;font-size:.62em;border-radius:12px;padding:2px 10px;vertical-align:middle">✅ faite</span>`:""}</h3>
-      <div class="exo" style="border-left:4px solid ${mz.coul}">
+    h+=`<div class="sect"><h3>🎵 Musique du jour · ${_mzList.length>1?_mzList.length+" × ":""}15 min${mzFaite?` <span style="background:#5A8F5D;color:#fff;font-size:.62em;border-radius:12px;padding:2px 10px;vertical-align:middle">✅ faite</span>`:""}</h3>`;
+    _mzList.forEach(k=>{const mz=MUSIC[k];
+      h+=`<div class="exo" style="border-left:4px solid ${mz.coul}">
         <div class="haut"><b>${mz.emoji} ${mz.nom}</b><span class="dose" style="background:${mz.coul}">${mz.niveau}</span></div>
         <div class="astuce">${mz.focus}</div>
-      </div></div>`;
+      </div>`;});
+    h+=`</div>`;
   }
   h+=`<div class="sect"><h3>🍽️ Nutrition du jour</h3>`;
   h+=`<div class="pdj-jour"><span class="menu-lab">🥐 P'tit-déj</span>${pdjPour(tK,t.cat)}</div>`;
