@@ -275,6 +275,16 @@ svg .bande{stroke:var(--hiit);stroke-width:2;fill:none;stroke-dasharray:2 3}
   </div>
 
   <div class="bloc">
+    <h2>💓 Fréquence cardiaque — vos repères</h2>
+    <div class="chiffres" style="margin-bottom:10px">
+      <div class="chiffre"><div class="val">~185</div><div class="lab">FC max estimée (bpm)</div></div>
+      <div class="chiffre"><div class="val">110-140</div><div class="lab">Zone lipolyse (60-75 %)</div></div>
+      <div class="chiffre"><div class="val">&lt; 150</div><div class="lab">Sorties faciles / endurance</div></div>
+      <div class="chiffre"><div class="val">160-172</div><div class="lab">Fractionné (87-93 %)</div></div>
+    </div>
+    <p style="font-size:.85em;color:#4a6472;line-height:1.5">Pourquoi ~185 et pas la formule d'âge ? La formule de Tanaka (208 − 0,7 × 51) donnerait 172 bpm… que vous avez <i>soutenus en moyenne pendant 47 minutes</i> le 15 juillet — impossible si c'était votre max. Vos données réelles indiquent donc une FC max d'au moins ~185. Estimation à affiner si un pic mesuré apparaît sur une future séance intense (le max affiché par la montre en fin de fractionné est un bon candidat).</p>
+  </div>
+  <div class="bloc">
     <h2>🎵 Musique — 15 min/jour</h2>
     <p>Une <b>séance de 15 min chaque jour à partir du 17 juillet</b>, en alternance sur vos 4 disciplines. La rotation est calée sur le sport pour que l'effort physique et l'effort d'apprentissage se complètent au lieu de se cannibaliser :</p>
     <ul>
@@ -414,7 +424,8 @@ hiitP3:{cat:"HIIT",coul:"var(--hiit)",titre:"HIIT piscine puissance 20/40",duree
  nutri:"Séance courte mais brutale : collation protéinée dans les 30 min (œuf dur, yaourt, fromage blanc)."},
 hiitC:{cat:"HIIT",coul:"var(--hiit)",titre:"Fractionné course 8×2 min",duree:"35-40 min",svg:"course",
  blocs:[{t:"Échauffement",d:"10 min footing léger + 3 accélérations progressives de 80 m."},
-        {t:"Fractionné",d:"8 × (2 min rapide à ~85 % FCmax / 1 min footing lent). Rapide = vous ne pouvez pas parler."},
+        {t:"Fractionné",d:"8 × (2 min rapide / 1 min footing lent). Rapide = vous ne pouvez pas parler."},
+        {t:"🎯 Vos cibles (FC max estimée ~185)",d:"<b>Allure des répétitions : 5:30-5:50/km</b> — un cran moins vite que vos sprints de 30 s (km central du 20/07 à 5:46 avec les récups incluses), car 2 min c'est long. <b>FC : montée vers 160-170 bpm en FIN de répétition</b> (87-92 % FCmax) — sur 2 min la FC est en retard sur l'effort, fiez-vous à l'allure au départ, la FC valide sur la fin. Récup : 1 min de footing très lent, la FC doit redescendre vers ~130-140 avant de repartir. Si vous tenez la 8e répétition à la même allure que la 1re, c'était la bonne allure."},
         {t:"Retour au calme",d:"5 min footing très lent + marche."}],
  nutri:"Jamais à jeun pour le fractionné. Glucides 2 h avant. Après : protéines + glucides dans l'heure."},
 hiitCote:{cat:"HIIT",coul:"var(--hiit)",titre:"HIIT en côtes (montagne)",duree:"30-40 min",svg:"course",
@@ -535,7 +546,7 @@ const JOURS = {
 "7-19":["sc","repos",""],
 "7-20":["sc","hiitR1","Fractionné 30/30 sur le front de mer ou la route côtière (plat)."],
 "7-21":["sc","mbas",""],
-"7-22":["sc","hiitC","Sur route plate ou plage à marée basse."],
+"7-22":["sc","hiitC","Sur route plate ou plage à marée basse. Cibles du jour : répétitions à 5:30-5:50/km, FC 160-170 bpm en fin de rep (détail dans le déroulé)."],
 "7-23":["sc","mcirc",""],
 "7-24":["sc","tempo","Course tempo : allure soutenue mais tenable, sur route plate le long de la côte."],
 "7-25":["sc","long10","GR34 vers la plage de Pen Guen et au-delà."],
@@ -618,7 +629,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="21 juillet 2026, photos des fiches redressées";
+const BILAN_MAJ="21 juillet 2026, cibles FC/allure du fractionné 8×2 + repères FC max ajoutés";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
