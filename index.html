@@ -629,7 +629,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="21 juillet 2026, sept photos pivotées à 180°";
+const BILAN_MAJ="21 juillet 2026, journée bouclée : muscu bas 23h09, déficit ~510";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
@@ -650,15 +650,34 @@ const JOURNAL={
 "7-20":{in:1670,out:550,km:4.97,seanceFaite:true,
   inD:"pdj estimé ~350 · déjeuner ~850 (2 wraps, fromage-pain, ½ nectarine) · dîner ~470 (quiche légumes + rab, salade, brugnon)",
   outD:"Fractionné 30/30 de nuit, 4,97 km (Strava, 425 kcal, 152 bpm) + 13 521 pas · 12,1 km au total (Withings : 2 014 kcal, mais la course y est comptée comme de la marche — total reconstruit ≈ 2 250 kcal, soit ~550 au-delà de la base)"},
-"7-21":{in:1520,out:0,km:0,seanceFaite:false,partiel:true,
+"7-21":{in:1520,out:330,km:0,seanceFaite:true,
   inD:"pdj ~250 (yaourt grec, banane, café) · déjeuner ~650 (2 poissons panés, riz, épinards, carottes, pain, nectarine) · dîner ~620 (croque-monsieur et demi, salade, gaspacho, nectarine)",
-  outD:"Muscu bas du corps prévue — séance et pas du jour à confirmer"}
+  outD:"Muscu bas du corps 42 min à 23h09 (Strava, ~280 kcal, FC 96/125) + 7 009 pas · 5,1 km (Withings : 1 751 kcal hors muscu → total ≈ 2 030, ~330 au-delà de la base)"}
 };
 
 /* Jours de mesure : lundis et jeudis matin (poids à jeun + tour de taille) */
 const MESURES=["7-16","7-20","7-23","7-27","7-30","8-3","8-6","8-10","8-13","8-17","8-20","8-24","8-27","8-31"];
 /* Comptes rendus de séances réalisées */
 const RECAPS={
+"7-21":`
+<div class="recap">
+  <div class="recap-badge">✅ Séance réalisée — Muscu bas du corps · 23:09, Strava</div>
+  <div class="recap-stats">
+    <div><b>42:06</b><span>durée</span></div>
+    <div><b>96</b><span>bpm moy.</span></div>
+    <div><b>125</b><span>bpm max</span></div>
+    <div><b>~280</b><span>kcal est.</span></div>
+    <div><b>23:09</b><span>départ 🌙</span></div>
+    <div><b>6</b><span>effort Strava</span></div>
+  </div>
+  <div class="recap-analyse">
+    <b>📊 Bilan de séance :</b><br>
+    <b>Sport 💪</b> — Muscu bas du corps suivie à la lettre (enregistrée « crossfit » par la montre), 42 minutes pleines à 23h09 — décidément, les séances nocturnes deviennent votre signature. FC moyenne 96, pics à 125 : le profil classique d'une séance de force bien menée, où le cœur monte sur les séries et redescend pendant les récupérations.<br><br>
+    <b>Lecture 🦵</b> — Squats, fentes et compagnie à la vraie fatigue musculaire : ce sont les plus gros muscles du corps, ceux qui coûtent le plus cher à entretenir — donc ceux qui brûlent le plus, jour et nuit. Attendez-vous à des courbatures honnêtes demain : c'est le signe que ça a travaillé, et le 8×2 min de demain se chargera de les rincer.<br><br>
+    <b>Verdict ✅</b> — 6 séances sur 6 depuis le départ. La journée du 21 est complète : trois repas tracés (~1 520 kcal), 7 009 pas, muscu bouclée — déficit ~510 kcal, pile dans la cible.
+  </div>
+  <a class="recap-lien" href="https://www.strava.com/activities/19409526837" target="_blank">Voir l'activité sur Strava →</a>
+</div>`,
 "7-20":`
 <div class="recap">
   <div class="recap-badge">✅ Séance réalisée — Fractionné 30/30 · 22:21, Strava</div>
@@ -1081,7 +1100,7 @@ function construireBilan(){
       <div class="chiffre"><div class="val">${outTot}</div><div class="lab">kcal brûlées (séances)</div></div>
       <div class="chiffre"><div class="val">${fmt(dPoids)} kg · ${fmt(dTaille)} cm</div><div class="lab">évolution vs départ</div></div>
     </div>
-    <div class="bilan-resume">✅ <b>Accompli à date : 5 séances sur 5.</b> Course inaugurale le 15 (7,14 km — mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : <b>trail à 149 bpm le 17</b> et <b>vélo d'appartement à 119 bpm le 18</b> (21 km, 4 relances comme prescrit) — trois séances d'affilée dans la zone brûle-graisse. Côté assiette, quatre jours en déficit maîtrisé et croissant (~268, ~340, ~335 puis ~745 kcal le 18, la plus grosse journée de dépense à date : 2 485 kcal, vélo et marche compris), un resto sans extra le 17 et des carbonara sagement reportées le 18. Et le <b>premier verdict est tombé lundi 20 : 74,6 kg (−0,9) · 95 cm (−1)</b> — la graisse abdominale bouge, la mécanique fonctionne. Prochain point : jeudi 23.</div>
+    <div class="bilan-resume">✅ <b>Accompli à date : 6 séances sur 6.</b> Course inaugurale le 15 (7,14 km — mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : <b>trail à 149 bpm le 17</b> et <b>vélo d'appartement à 119 bpm le 18</b> (21 km, 4 relances comme prescrit) — trois séances d'affilée dans la zone brûle-graisse. Côté assiette, quatre jours en déficit maîtrisé et croissant (~268, ~340, ~335 puis ~745 kcal le 18, la plus grosse journée de dépense à date : 2 485 kcal, vélo et marche compris), un resto sans extra le 17 et des carbonara sagement reportées le 18. Et le <b>premier verdict est tombé lundi 20 : 74,6 kg (−0,9) · 95 cm (−1)</b> — la graisse abdominale bouge, la mécanique fonctionne. Prochain point : jeudi 23.</div>
   </div>
   <div class="bloc">
     <h2>📉 Évolution des mesures</h2>
