@@ -629,7 +629,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="22 juillet 2026, petit-déj corrigé (avoine réduite) — séance à confirmer";
+const BILAN_MAJ="22 juillet 2026, fractionné tracé (7,19 km) — 7 séances sur 7 ✅";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
@@ -653,15 +653,34 @@ const JOURNAL={
 "7-21":{in:1520,out:330,km:0,seanceFaite:true,
   inD:"pdj ~250 (yaourt grec, banane, café) · déjeuner ~650 (2 poissons panés, riz, épinards, carottes, pain, nectarine) · dîner ~620 (croque-monsieur et demi, salade, gaspacho, nectarine)",
   outD:"Muscu bas du corps 42 min à 23h09 (Strava, ~280 kcal, FC 96/125) + 7 009 pas · 5,1 km (Withings : 1 751 kcal hors muscu → total ≈ 2 030, ~330 au-delà de la base)"},
-"7-22":{in:1565,out:0,km:0,seanceFaite:false,partiel:true,
+"7-22":{in:1565,out:775,km:7.19,seanceFaite:true,
   inD:"petit-déj ~235 (yaourt grec, avoine 1-2 c.à.c, nectarine) · déjeuner ~530 (wrap, pain, fromage) · dîner ~800 (1 galette complète, salade, nectarine + gâteau breton, 1 rosé + 1 cidre)",
-  outD:"Fractionné 8×2 min — séance encore à confirmer"}
+  outD:"Fractionné de nuit 7,19 km à 22:50 (Strava, 613 kcal, 154 bpm moy.) + 13 715 pas · 13,4 km au total (Withings : 2 193 kcal, mais la course y est comptée comme de la marche — total reconstruit ≈ 2 475 kcal, soit ~775 au-delà de la base)"}
 };
 
 /* Jours de mesure : lundis et jeudis matin (poids à jeun + tour de taille) */
 const MESURES=["7-16","7-20","7-23","7-27","7-30","8-3","8-6","8-10","8-13","8-17","8-20","8-24","8-27","8-31"];
 /* Comptes rendus de séances réalisées */
 const RECAPS={
+"7-22":`
+<div class="recap">
+  <div class="recap-badge">✅ Séance réalisée — Fractionné de nuit · 22:50, Strava</div>
+  <div class="recap-stats">
+    <div><b>7,19</b><span>km</span></div>
+    <div><b>54:50</b><span>durée</span></div>
+    <div><b>7:37</b><span>min/km</span></div>
+    <div><b>613</b><span>kcal</span></div>
+    <div><b>154</b><span>bpm moy.</span></div>
+    <div><b>128</b><span>effort Strava</span></div>
+  </div>
+  <div class="recap-analyse">
+    <b>📊 Bilan de séance :</b><br>
+    <b>Sport 🏃</b> — Fractionné bouclé de nuit (22:50, 20°, vent de 17 km/h), 7,19 km en 55 min. Soyons francs sur les cibles : les répétitions visaient 5:30-5:50/km avec une FC de 160-170 en fin de rep. Sur le terrain, le kilomètre le plus rapide est à 6:52 et la FC moyenne à 154 bpm. La séance a bien eu lieu, mais à une intensité nettement plus modérée que le fractionné prévu.<br><br>
+    <b>Lecture 💓</b> — Rien d'inquiétant, et plusieurs bonnes raisons à cela : c'est votre 7e séance d'affilée, de nuit, avec du vent de face et un dîner (plus deux verres) encore sur l'estomac. Le corps a mis le frein tout seul — et ça, c'est une information utile, pas un échec. Un fractionné rendu à mi-régime en fin de grosse semaine, c'est de la lucidité, pas du laisser-aller.<br><br>
+    <b>Verdict ✅</b> — 7 séances sur 7 depuis le départ : l'assiduité est parfaite, et c'est elle qui fait fondre le tour de taille. La journée du 22 est complète — trois repas ~1 565 kcal, 13 715 pas, séance faite — pour un déficit ~910 kcal, votre plus gros de la semaine. Pour la prochaine séance d'intensité : à tête reposée, en journée et sans vent, vous irez chercher ces 5:30-5:50 sans forcer.
+  </div>
+  <a class="recap-lien" href="https://www.strava.com/activities/19423927440" target="_blank">Voir l'activité sur Strava →</a>
+</div>`,
 "7-21":`
 <div class="recap">
   <div class="recap-badge">✅ Séance réalisée — Muscu bas du corps · 23:09, Strava</div>
