@@ -496,6 +496,12 @@ reposV:{cat:"REPOS",coul:"var(--repos)",titre:"Repos — jour de voyage",duree:"
  blocs:[{t:"Transit",d:"Installation en Normandie. Marchez pour explorer, étirez-vous après la route."},
         {t:"Repérage",d:"Repérez vos parcours de course pour les jours suivants (littoral, chemins)."}],
  nutri:"Piège du jour de route : sandwich + grignotage. Prévoyez fruits, amandes et eau dans la voiture."},
+recupHaut:{cat:"REPOS",coul:"var(--repos)",titre:"Récup active — haut du corps (jambes au repos)",duree:"30-40 min",svg:"pompes",
+ exos:[["pompes","3 × 10-12"],["dips","3 × 10"],["tirage","3 × 12"],["curl","3 × 12"],["gainage","3 × 45 s"],["gainlat","2 × 40 s/côté"],["twist","3 × 20"]],
+ blocs:[{t:"Pourquoi on adapte aujourd'hui",d:"Courbatures marquées aux jambes (escaliers douloureux) après la muscu bas du corps du 21 et le fractionné du 22 — la douleur au plus fort à 48 h, c'est parfaitement normal. On met les jambes AU REPOS TOTAL : zéro squat, zéro fente, zéro course. On travaille uniquement le haut du corps et la sangle abdominale, qui sont frais."},
+        {t:"Format",d:"Circuit tranquille : enchaînez les 7 exercices avec 45-60 s de repos, 3 tours. Aucune recherche de performance aujourd'hui — l'objectif est d'entretenir l'habitude sans creuser la fatigue."},
+        {t:"Pour soulager les jambes",d:"Le meilleur remède aux courbatures, c'est le mouvement DOUX — ni repos total, ni effort. Bénéfique et optionnel : 15-20 min de marche très tranquille à plat, OU quelques longueurs faciles dans la piscine du jardin, juste pour faire circuler le sang. Puis étirements légers mollets / quadriceps / ischios, tenus 30 s sans à-coups, jamais dans la douleur vive."}],
+ nutri:"Récupération = protéines à chaque repas (le muscle se répare), magnésium (légumes verts, amandes, eau type Hépar) et beaucoup d'eau. On évite l'alcool aujourd'hui : il ralentit nettement la réparation musculaire."},
 bilanMi:{cat:"BILAN",coul:"var(--bilan)",titre:"Bilan mi-parcours + séance légère",duree:"40 min",svg:"course",
  blocs:[{t:"Séance",d:"5 km footing très facile + 10 min de gainage doux."},
         {t:"Mesures",d:"Poids à jeun, tour de taille, photo. Référence du 15 juillet : 75,5 kg / 96 cm. Cap mi-parcours : ~74 kg et ~93 cm."},
@@ -547,7 +553,7 @@ const JOURS = {
 "7-20":["sc","hiitR1","Fractionné 30/30 sur le front de mer ou la route côtière (plat)."],
 "7-21":["sc","mbas",""],
 "7-22":["sc","hiitC","Sur route plate ou plage à marée basse. Cibles du jour : répétitions à 5:30-5:50/km, FC 160-170 bpm en fin de rep (détail dans le déroulé)."],
-"7-23":["sc","mcirc",""],
+"7-23":["sc","recupHaut","Séance adaptée : courbatures marquées aux jambes → repos complet des jambes aujourd'hui, on travaille le haut du corps + le gainage. Le circuit full body prévu (squats/fentes) est reporté."],
 "7-24":["sc","tempo","Course tempo : allure soutenue mais tenable, sur route plate le long de la côte."],
 "7-25":["sc","long10","GR34 vers la plage de Pen Guen et au-delà."],
 "7-26":["sc","repos",""],
@@ -630,7 +636,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="23 juillet 2026, mesure : 73,6 kg / 93 cm — −1,9 kg et −3 cm depuis le départ 🎯";
+const BILAN_MAJ="23 juillet 2026, séance adaptée (courbatures jambes → haut du corps) + mesure 73,6 kg / 93 cm 🎯";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
