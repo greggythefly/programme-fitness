@@ -555,7 +555,7 @@ const JOURS = {
 "7-22":["sc","hiitC","Sur route plate ou plage à marée basse. Cibles du jour : répétitions à 5:30-5:50/km, FC 160-170 bpm en fin de rep (détail dans le déroulé)."],
 "7-23":["sc","recupHaut","Séance adaptée : courbatures marquées aux jambes → repos complet des jambes aujourd'hui, on travaille le haut du corps + le gainage. Le circuit full body prévu (squats/fentes) est reporté."],
 "7-24":["sc","tempo","Séance NON FAITE : jambes encore douloureuses au 3e jour après la muscu bas du corps du 21. Repos prolongé assumé — mais 3 343 pas seulement, alors que la marche douce est justement le meilleur remède aux courbatures."],
-"7-25":["sc","long10","GR34 vers la plage de Pen Guen et au-delà."],
+"7-25":["sc","long10","GR34 vers la plage de Pen Guen et au-delà. Réalisé de nuit à 21:58 : 7,22 km au lieu des 9-10 prévus — conséquence d'un départ trop rapide (voir le bilan de séance)."],
 "7-26":["sc","repos",""],
 "7-27":["sc","hiitR2","Fractionné 40/20 sur route plate."],
 "7-28":["sc","mcore",""],
@@ -636,7 +636,7 @@ const RELEVES={
 };
 
 /* Journal quotidien : calories estimées (repas tracés) et dépense des séances */
-const BILAN_MAJ="25 juillet 2026 : les 3 repas tracés (~2 105 kcal, dimanche de fête) — reste à saisir la séance et les pas";
+const BILAN_MAJ="25 juillet 2026 bouclé : long run de nuit 7,22 km + 10 965 pas — déficit ~315 kcal malgré le déjeuner de fête 🎉";
 const DEPART={cle:"7-15",poids:75.5,taille:96};
 const JOURNAL={
 "7-15":{in:2150,out:718,km:7.14,seanceFaite:true,
@@ -663,9 +663,9 @@ const JOURNAL={
 "7-22":{in:1565,out:775,km:7.19,seanceFaite:true,
   inD:"petit-déj ~235 (yaourt grec, avoine 1-2 c.à.c, nectarine) · déjeuner ~530 (wrap, pain, fromage) · dîner ~800 (1 galette complète, salade, nectarine + gâteau breton, 1 rosé + 1 cidre)",
   outD:"Fractionné de nuit 7,19 km à 22:50 (Strava, 613 kcal, 154 bpm moy.) + 13 715 pas · 13,4 km au total (Withings : 2 193 kcal, mais la course y est comptée comme de la marche — total reconstruit ≈ 2 475 kcal, soit ~775 au-delà de la base)"},
-"7-25":{in:2105,out:0,km:0,seanceFaite:false,partiel:true,
+"7-25":{in:2105,out:720,km:7.22,seanceFaite:true,
   inD:"petit-déj ~255 (yaourt, 1 c. d'avoine, 1 tranche de pain complet) · déjeuner ~1 150 (salade grecque, salade de lentilles, 1 part de quiche · tarte aux pommes + clafoutis aux cerises · 2 petites coupes de champagne) · dîner ~700 (1 saucisse grillée, semoule, salade grecque, demi-œuf dur, salade de pâtes)",
-  outD:"Long run GR34 vers Pen Guen prévu — séance et données Withings pas encore renseignées."},
+  outD:"Long run de nuit 7,22 km à 21:58 (Strava, 657 kcal, 153 bpm moy., 133 m D+) + 10 965 pas relevés AVANT la course (Withings : 8,0 km, 244 kcal en activité, 1 697 kcal au total à 21:55) · ~15,2 km au total sur la journée — total reconstruit ≈ 2 420 kcal, soit ~720 au-delà de la base"},
 "7-24":{in:1575,out:0,km:0,seanceFaite:false,
   inD:"petit-déj ~175 (yaourt grec nature, 1 c. de flocons d'avoine) · déjeuner ~690 (2 saucisses grillées, salade verte aux tomates, pêche plate) · dîner ~710 (linguine bolognaise maison, yaourt grec)",
   outD:"2e jour de repos : course tempo non faite (jambes encore douloureuses). 3 343 pas · 2,6 km — Withings : 1 666 kcal dépensées au total, dont 76 en activité. Journée la plus creuse du programme en pas, MAIS l'apport très sobre (1 575 kcal) maintient un petit déficit de ~125 kcal."},
@@ -678,6 +678,26 @@ const JOURNAL={
 const MESURES=["7-16","7-20","7-23","7-27","7-30","8-3","8-6","8-10","8-13","8-17","8-20","8-24","8-27","8-31"];
 /* Comptes rendus de séances réalisées */
 const RECAPS={
+"7-25":`
+<div class="recap">
+  <div class="recap-badge">✅ Séance réalisée — Long run de nuit · 21:58, Strava</div>
+  <div class="recap-stats">
+    <div><b>7,22</b><span>km</span></div>
+    <div><b>57:30</b><span>durée</span></div>
+    <div><b>7:58</b><span>min/km</span></div>
+    <div><b>133</b><span>m D+</span></div>
+    <div><b>657</b><span>kcal</span></div>
+    <div><b>153</b><span>bpm moy.</span></div>
+  </div>
+  <div class="recap-analyse">
+    <b>📊 Bilan de séance :</b><br>
+    <b>Sport 🏃</b> — La série de trois jours sans séance est brisée, et c'est le plus important. 7,22 km sur le GR34 avec 133 m de dénivelé, ce n'est pas un parcours facile. Mais il y a une vraie leçon technique dans les temps intermédiaires : <b>vous êtes parti beaucoup trop vite</b>. Km 1 à 6:38, km 2 à 6:25 — c'est votre allure tempo, pas une allure de sortie longue. Ensuite la dérive est nette : 8:46, 8:20, 8:25, 8:15, 8:33. Même corrigée du dénivelé (VAP), la chute est là : 6:24, 6:19, puis 7:24, 7:30, 7:26, 7:49, 8:33. Vous avez perdu deux minutes au kilomètre entre le début et la fin. C'est aussi ce qui explique les 7,22 km au lieu des 9-10 prévus : le réservoir était vide avant l'heure.<br><br>
+    <b>Lecture 💓</b> — 153 bpm de moyenne, soit ~83 % de votre FC max estimée (~185). C'est quasiment la FC de votre fractionné du 22 (154 bpm) — <b>vous avez couru votre sortie longue à l'intensité d'une séance de qualité</b>. Or le long run se court en endurance fondamentale, autour de <b>135-145 bpm</b>, à une allure où l'on peut tenir une conversation. Ce n'est pas un détail de confort : c'est à basse intensité que le corps puise majoritairement dans les graisses, et c'est précisément l'objectif du programme. Couru trop vite, le long run devient plus dur, plus court, et moins efficace pour le tour de taille.<br><br>
+    <b>Le réglage pour la prochaine 🎯</b> — Une seule consigne : <b>bridez-vous sur les 2 premiers kilomètres</b>. Visez 8:00-8:15/km au départ, quitte à avoir l'impression de marcher. Si la FC monte au-dessus de 150, ralentissez. L'objectif n'est pas de finir vite, c'est de finir <i>régulier</i> — et de pouvoir aller chercher les 10 km sans exploser.<br><br>
+    <b>Verdict ✅</b> — Malgré le déjeuner de fête à 1 150 kcal, la journée boucle en <b>déficit de ~315 kcal</b>. 10 965 pas AVANT la course, puis 7,22 km : c'est exactement le scénario dont on parlait — bouger règle le problème calorique d'un seul geste. Et un 2e meilleur temps sur la Côte Chapelle Ste Brigitte au passage.
+  </div>
+  <a class="recap-lien" href="https://www.strava.com/activities/19464355997" target="_blank">Voir l'activité sur Strava →</a>
+</div>`,
 "7-22":`
 <div class="recap">
   <div class="recap-badge">✅ Séance réalisée — Fractionné de nuit · 22:50, Strava</div>
