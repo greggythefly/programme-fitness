@@ -1169,6 +1169,10 @@ function graphCalories(){
   return g;
 }
 
+/* ⚠️ MAINTENANCE — à chaque nouvelle mesure (voir MESURES), réécrire les trois
+   synthèses ci-dessous : .bilan-resume (accompli à date), la .bilan-note des
+   mesures (lecture de la dernière pesée) et la .bilan-note des calories
+   (déficit cumulé et moyenne). Dernière réécriture : mesure du 27 juillet 2026. */
 function construireBilan(){
   const cles=Object.keys(JOURNAL);
   const nbSeances=cles.filter(c=>JOURNAL[c].seanceFaite).length;
@@ -1191,17 +1195,17 @@ function construireBilan(){
       <div class="chiffre"><div class="val">${outTot}</div><div class="lab">kcal brûlées (séances)</div></div>
       <div class="chiffre"><div class="val">${fmt(dPoids)} kg · ${fmt(dTaille)} cm</div><div class="lab">évolution vs départ</div></div>
     </div>
-    <div class="bilan-resume">✅ <b>Accompli à date : 6 séances sur 6.</b> Course inaugurale le 15 (7,14 km — mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : <b>trail à 149 bpm le 17</b> et <b>vélo d'appartement à 119 bpm le 18</b> (21 km, 4 relances comme prescrit) — trois séances d'affilée dans la zone brûle-graisse. Côté assiette, quatre jours en déficit maîtrisé et croissant (~268, ~340, ~335 puis ~745 kcal le 18, la plus grosse journée de dépense à date : 2 485 kcal, vélo et marche compris), un resto sans extra le 17 et des carbonara sagement reportées le 18. Et le <b>premier verdict est tombé lundi 20 : 74,6 kg (−0,9) · 95 cm (−1)</b> — la graisse abdominale bouge, la mécanique fonctionne. Prochain point : jeudi 23.</div>
+    <div class="bilan-resume">✅ <b>Accompli à date (12 jours) : 8 séances réalisées, 31,5 km courus, 4 758 kcal brûlées en séance.</b> <b>Semaine 1 sans faute</b> — course inaugurale le 15 (7,14 km, mais 172 bpm, trop haut), muscu complète le 16 (21 séries, 50 pompes), puis le déclic cardiaque : trail à 149 bpm le 17 et vélo d'appartement à 119 bpm le 18 (21 km), enfin le fractionné du 22 (7,19 km) qui reste le sommet du programme avec <b>910 kcal de déficit</b>. <b>Semaine 2 en dents de scie</b> — un trou de trois jours ensuite : le 23 finit en surplus (+550 kcal, seule journée rouge à date) et les séances des 23 et 24 sautent, jambes douloureuses après la muscu bas du corps. Rebond net le 25 avec le long run de nuit (7,22 km) malgré un départ trop rapide, puis le 26 en modèle du genre : <b>rassasié à 1 215 kcal, 7 964 pas, 485 kcal de déficit sans le moindre effort de volonté</b>. <b>Verdict au 27 juillet : 73,7 kg (−1,8) · 92 cm (−4).</b> Le tour de taille n'est plus qu'à 1 cm de la fourchette cible du 31 août, avec cinq semaines d'avance. Prochain point : jeudi 30 juillet.</div>
   </div>
   <div class="bloc">
     <h2>📉 Évolution des mesures</h2>
     ${graphMesures()}
-    <p class="bilan-note">Mesures des lundis et jeudis à jeun. Stabilité à J+1 : normal, la tendance se lit sur les lundis. Lignes vertes = seuils objectifs du 31 août.</p>
+    <p class="bilan-note">Mesures des lundis et jeudis à jeun. Lignes vertes = seuils objectifs du 31 août. <b>Lecture du 27 juillet</b> : le poids est stable (+0,1 kg) mais le tour de taille perd encore 1 cm — c'est de la <b>recomposition</b>, on perd du gras en gardant le muscle. Quand les deux courbes divergent, c'est toujours celle du bas qu'il faut croire : la balance mesure une masse, le mètre ruban mesure l'objectif.</p>
   </div>
   <div class="bloc">
     <h2>🔥 Apports vs dépense</h2>
     ${graphCalories()}
-    <p class="bilan-note">Apports : estimations d'après vos menus et photos. Dépense empilée : ~1 700 kcal de vie quotidienne (métabolisme + activité normale, teinte claire) + les séances (corail). L'écart entre les deux barres = le déficit du jour, affiché sous chaque date. Quatre premiers jours : ~268 kcal le 15 (malgré l'apéro — montre : 2 418 kcal dépensées), ~340 le 16 (iPhone 1 683 kcal + muscu ~350), ~335 le 17 (resto sans extra — montre : 2 145 kcal dépensées), ~745 le 18 (montre : 2 485 kcal dépensées, vélo et marche compris) — la tendance est bonne et va crescendo. Le 19, dimanche de repos avec l'extra tarte assumé mais 10 450 pas au compteur (montre : 1 804 kcal dépensées), finit en quasi-équilibre (~−50) : la soupape hebdomadaire, version active. Cap : ~500-700 de déficit/jour en moyenne ; la marge s'ouvrira naturellement sur les grosses journées cardio.</p>
+    <p class="bilan-note">Apports : estimations d'après vos menus et photos. Dépense empilée : ~1 700 kcal de vie quotidienne (métabolisme + activité normale, teinte claire) + les séances (corail). L'écart entre les deux barres = le déficit du jour, affiché sous chaque date. <b>Sur les 12 premiers jours : 4 113 kcal de déficit cumulé, soit ~343 kcal/jour en moyenne</b> — en dessous du cap visé de 500-700, et l'explication tient en deux journées : le 23 en surplus (+550) et le 24 quasi à l'équilibre (125). Extrêmes : 910 kcal de déficit le 22, −550 le 23. Un point de lucidité utile : 4 113 kcal ne représentent qu'environ <b>0,5 kg de gras pur</b> ; le reste des 1,8 kg perdus est de l'eau et du glycogène, ce qui est parfaitement normal en début de programme et va se stabiliser. Le marqueur fiable reste les 4 cm de tour de taille. La marge se creusera d'elle-même en tenant deux choses : aucune journée en surplus, et le modèle du 26 — gros volume, faible densité calorique.</p>
   </div>`;
   document.getElementById("vue-bilan").innerHTML=h;
 }
