@@ -560,7 +560,7 @@ const JOURS = {
 "7-27":["sc","hiitR2","Fractionné 40/20 sur route plate. Réalisé à 18:43 : 5,87 km, et surtout deux kilomètres de fractionné à 5:59 et 6:00 — la régularité enfin tenue (voir le bilan de séance)."],
 "7-28":["sc","mcore","Séance non réalisée — 25 ans de mariage, dîner au restaurant. À recaser le 31 juillet ou le 1er août. Journée en surplus, mais le poste le plus lourd est le fish and chips du midi, pas le dîner de fête."],
 "7-29":["sc","tempo","Course tempo exécutée à la lettre, et même au-delà : 9 km au total avec un bloc de 4 km tenu à 5:44/km de moyenne — 5 secondes d'amplitude sur quatre kilomètres. Déficit record de 1 041 kcal sur la journée."],
-"7-30":["sc","mhaut","Montez les répétitions de ~10 % vs semaine 1."],
+"7-30":["sc","mhaut","Répétitions déjà majorées de ~10 % vs semaine 1 : les doses affichées ci-dessous sont celles du jour. Séries identiques, récupération identique. Jour muscu = jour protéines, et aujourd'hui plus que jamais."],
 "7-31":["sc","hiitR3","Sprints 20/40, idéalement sur le sable ferme à marée basse (Pen Guen) pour amortir les articulations."],
 "8-1":["sc","long12","Le grand défi du séjour breton !"],
 "8-2":["sc","repos",""],
@@ -690,6 +690,10 @@ const JOURNAL={
 /* Jours de mesure : lundis et jeudis matin (poids à jeun + tour de taille) */
 const MESURES=["7-16","7-20","7-23","7-27","7-30","8-3","8-6","8-10","8-13","8-17","8-20","8-24","8-27","8-31"];
 /* Comptes rendus de séances réalisées */
+/* Doses ajustees pour un jour precis : surchargent les doses du modele T[]. */
+const DOSES_JOUR={
+"7-30":{pompes:"4 × 13-17",tirage:"3 × 13-17",dips:"3 × 11-13",curl:"3 × 13-17",gainage:"3 × 50-65 s",crunch:"3 × 17-22",releve:"3 × 13-17"}
+};
 const RECAPS={
 "7-29":`
 <div class="recap">
@@ -1068,11 +1072,14 @@ function ouvrirJour(cle){
   }
 
   if(t.exos&&t.exos.length){
+    const dj=(typeof DOSES_JOUR!=="undefined"&&DOSES_JOUR[cle])?DOSES_JOUR[cle]:null;
     h+=`<div class="sect"><h3>💪 Exercices</h3>`;
-    t.exos.forEach(([k,dose])=>{
+    if(dj)h+=`<p class="astuce" style="margin-bottom:8px">Doses du jour : <b>répétitions majorées d'environ 10 %</b> par rapport à la semaine 1. Les séries ne changent pas, seules les répétitions montent.</p>`;
+    t.exos.forEach(([k,doseBase])=>{
       const e=EX[k];
+      const dose=(dj&&dj[k])?dj[k]:doseBase;
       h+=`<div class="exo">
-        <div class="haut"><b>${e.n}</b><span class="dose">${dose}</span></div>
+        <div class="haut"><b>${e.n}</b><span class="dose">${dose}</span>${(dj&&dj[k]&&dj[k]!==doseBase)?`<span class="dose" style="background:#5A8F5D;color:#fff;margin-left:6px" title="Semaine 1 : ${doseBase}">+10 %</span>`:""}</div>
         ${S[e.svg]||""}
         <div class="astuce">${e.a}</div>
         <a class="yt" target="_blank" href="https://www.youtube.com/results?search_query=${encodeURIComponent(e.yt)}">▶ Vidéo YouTube</a>
