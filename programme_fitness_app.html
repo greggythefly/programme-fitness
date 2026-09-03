@@ -179,6 +179,9 @@ svg .trait{stroke:var(--encre);stroke-width:3;stroke-linecap:round;fill:none}
 svg .fleche{stroke:var(--hiit);stroke-width:2.5;stroke-linecap:round;fill:none}
 svg .sol{stroke:#9db4bd;stroke-width:2;stroke-dasharray:4 4}
 svg .bande{stroke:var(--hiit);stroke-width:2;fill:none;stroke-dasharray:2 3}
+svg .machine{stroke:#9db4bd;stroke-width:3;fill:none;stroke-linecap:round}
+svg .cable{stroke:#5a7484;stroke-width:1.6;fill:none}
+svg .poids{stroke:#9db4bd;stroke-width:2;fill:none}
 
 /* ---- Bilan : navigation par sections et blocs repliables ---- */
 .bnav{display:flex;gap:5px;overflow-x:auto;padding:2px 0 12px;position:sticky;top:0;z-index:6;
@@ -393,6 +396,79 @@ details.bfold>summary:hover{opacity:.75}
 <script>
 /* ============ SCHÉMAS SVG ============ */
 const S = {
+chestM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<line class="machine" x1="26" y1="14" x2="26" y2="76"/><line class="machine" x1="26" y1="20" x2="26" y2="52"/>
+<line class="machine" x1="26" y1="56" x2="74" y2="56"/><line class="machine" x1="74" y1="56" x2="74" y2="76"/>
+<rect class="poids" x="16" y="26" width="20" height="24" rx="2"/>
+<circle class="trait" cx="44" cy="30" r="8"/><line class="trait" x1="44" y1="38" x2="44" y2="56"/>
+<line class="trait" x1="44" y1="56" x2="74" y2="56"/><line class="trait" x1="74" y1="56" x2="76" y2="74"/>
+<line class="trait" x1="46" y1="42" x2="68" y2="44"/><line class="trait" x1="68" y1="44" x2="92" y2="42"/>
+<line class="machine" x1="94" y1="30" x2="94" y2="56"/><line class="cable" x1="94" y1="42" x2="120" y2="42"/>
+<path class="fleche" d="M126 42 h26 m0 0 l-7 -5 m7 5 l-7 5"/></svg>`,
+latpullM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<line class="machine" x1="176" y1="6" x2="176" y2="76"/><line class="machine" x1="70" y1="6" x2="176" y2="6"/>
+<rect class="poids" x="166" y="30" width="20" height="30" rx="2"/>
+<line class="cable" x1="70" y1="6" x2="70" y2="20"/><line class="machine" x1="58" y1="20" x2="84" y2="20"/>
+<circle class="trait" cx="48" cy="38" r="8"/><line class="trait" x1="48" y1="46" x2="50" y2="60"/>
+<line class="machine" x1="34" y1="60" x2="92" y2="60"/>
+<line class="trait" x1="50" y1="60" x2="82" y2="60"/><line class="trait" x1="82" y1="60" x2="84" y2="76"/>
+<line class="trait" x1="52" y1="48" x2="70" y2="24"/>
+<path class="fleche" d="M116 16 v26 m0 0 l-5 -7 m5 7 l5 -7"/></svg>`,
+rowM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<line class="machine" x1="22" y1="34" x2="22" y2="76"/><circle class="machine" cx="22" cy="34" r="5"/>
+<rect class="poids" x="12" y="44" width="20" height="26" rx="2"/>
+<line class="cable" x1="27" y1="36" x2="76" y2="46"/>
+<line class="machine" x1="86" y1="62" x2="130" y2="62"/>
+<circle class="trait" cx="102" cy="30" r="8"/><line class="trait" x1="102" y1="38" x2="100" y2="58"/>
+<line class="trait" x1="100" y1="58" x2="56" y2="62"/><line class="trait" x1="56" y1="62" x2="48" y2="54"/>
+<line class="trait" x1="98" y1="42" x2="86" y2="46"/><line class="trait" x1="86" y1="46" x2="76" y2="46"/>
+<path class="fleche" d="M148 30 h-28 m0 0 l7 -5 m-7 5 l7 5"/></svg>`,
+epaulesM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<line class="machine" x1="44" y1="20" x2="44" y2="60"/><line class="machine" x1="44" y1="60" x2="90" y2="60"/>
+<line class="machine" x1="90" y1="60" x2="90" y2="76"/><rect class="poids" x="20" y="32" width="18" height="26" rx="2"/>
+<circle class="trait" cx="60" cy="38" r="8"/><line class="trait" x1="60" y1="46" x2="58" y2="60"/>
+<line class="trait" x1="58" y1="60" x2="88" y2="60"/><line class="trait" x1="88" y1="60" x2="90" y2="76"/>
+<line class="trait" x1="62" y1="46" x2="74" y2="34"/><line class="trait" x1="74" y1="34" x2="72" y2="18"/>
+<line class="machine" x1="62" y1="16" x2="84" y2="16"/>
+<path class="fleche" d="M118 44 v-26 m0 0 l-5 7 m5 -7 l5 7"/></svg>`,
+pecdeckM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<circle class="trait" cx="100" cy="22" r="8"/><line class="trait" x1="100" y1="30" x2="100" y2="58"/>
+<line class="machine" x1="100" y1="58" x2="100" y2="76"/><line class="machine" x1="82" y1="76" x2="118" y2="76"/>
+<line class="trait" x1="98" y1="36" x2="70" y2="30"/><line class="trait" x1="70" y1="30" x2="62" y2="44"/>
+<line class="trait" x1="102" y1="36" x2="130" y2="30"/><line class="trait" x1="130" y1="30" x2="138" y2="44"/>
+<line class="machine" x1="58" y1="30" x2="58" y2="52"/><line class="machine" x1="142" y1="30" x2="142" y2="52"/>
+<path class="fleche" d="M34 62 h22 m0 0 l-6 -5 m6 5 l-6 5"/>
+<path class="fleche" d="M166 62 h-22 m0 0 l6 -5 m-6 5 l6 5"/></svg>`,
+curlM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<line class="machine" x1="172" y1="12" x2="172" y2="76"/><circle class="machine" cx="172" cy="66" r="5"/>
+<rect class="poids" x="162" y="20" width="20" height="30" rx="2"/>
+<line class="cable" x1="167" y1="64" x2="116" y2="52"/>
+<circle class="trait" cx="66" cy="18" r="8"/><line class="trait" x1="66" y1="26" x2="66" y2="52"/>
+<line class="trait" x1="66" y1="52" x2="58" y2="76"/><line class="trait" x1="66" y1="52" x2="76" y2="76"/>
+<line class="trait" x1="70" y1="32" x2="78" y2="52"/><line class="trait" x1="78" y1="52" x2="116" y2="52"/>
+<path class="fleche" d="M104 64 q14 -6 16 -22 m0 0 l-6 5 m6 -5 l2 7"/></svg>`,
+tricepsM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<line class="machine" x1="172" y1="8" x2="172" y2="76"/><line class="machine" x1="124" y1="10" x2="172" y2="10"/>
+<circle class="machine" cx="124" cy="12" r="4"/><rect class="poids" x="162" y="26" width="20" height="30" rx="2"/>
+<line class="cable" x1="124" y1="16" x2="110" y2="34"/>
+<circle class="trait" cx="66" cy="18" r="8"/><line class="trait" x1="66" y1="26" x2="66" y2="54"/>
+<line class="trait" x1="66" y1="54" x2="58" y2="76"/><line class="trait" x1="66" y1="54" x2="76" y2="76"/>
+<line class="trait" x1="70" y1="32" x2="92" y2="34"/><line class="trait" x1="92" y1="34" x2="108" y2="46"/>
+<path class="fleche" d="M140 34 v22 m0 0 l-5 -7 m5 7 l5 -7"/></svg>`,
+deadbugM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="66" x2="192" y2="66"/>
+<circle class="trait" cx="40" cy="58" r="7"/><line class="trait" x1="47" y1="60" x2="124" y2="60"/>
+<line class="trait" x1="58" y1="60" x2="52" y2="26"/>
+<line class="trait" x1="58" y1="60" x2="92" y2="46"/>
+<line class="trait" x1="124" y1="60" x2="122" y2="30"/><line class="trait" x1="122" y1="30" x2="142" y2="26"/>
+<line class="trait" x1="124" y1="60" x2="166" y2="52"/>
+<path class="fleche" d="M96 22 h20 m0 0 l-6 -4 m6 4 l-6 4"/></svg>`,
+vacuumM:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="76" x2="192" y2="76"/>
+<circle class="trait" cx="84" cy="18" r="8"/><line class="trait" x1="84" y1="26" x2="84" y2="36"/>
+<path class="trait" d="M84 36 q-14 12 0 24"/><path class="trait" d="M84 36 q10 12 0 24"/>
+<line class="trait" x1="84" y1="60" x2="76" y2="76"/><line class="trait" x1="84" y1="60" x2="92" y2="76"/>
+<line class="trait" x1="84" y1="32" x2="70" y2="44"/><line class="trait" x1="84" y1="32" x2="98" y2="44"/>
+<path class="fleche" d="M124 48 h-24 m0 0 l6 -5 m-6 5 l6 5"/>
+<path class="fleche" d="M46 48 h24 m0 0 l-6 -5 m6 5 l-6 5"/></svg>`,
 pompes:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="70" x2="192" y2="70"/><circle class="trait" cx="38" cy="34" r="8"/><line class="trait" x1="45" y1="39" x2="150" y2="58"/><line class="trait" x1="150" y1="58" x2="168" y2="70"/><line class="trait" x1="62" y1="42" x2="58" y2="70"/><line class="trait" x1="100" y1="49" x2="98" y2="70"/><path class="fleche" d="M30 52 v12 m0 0 l-4 -5 m4 5 l4 -5"/></svg>`,
 squat:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="72" x2="192" y2="72"/><circle class="trait" cx="90" cy="16" r="8"/><line class="trait" x1="90" y1="24" x2="88" y2="44"/><line class="trait" x1="90" y1="30" x2="120" y2="34"/><line class="trait" x1="88" y1="44" x2="106" y2="56"/><line class="trait" x1="106" y1="56" x2="100" y2="72"/><path class="fleche" d="M140 34 v22 m0 0 l-4 -5 m4 5 l4 -5"/><text x="150" y="42" font-size="10" fill="#E4572E">90°</text></svg>`,
 fente:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="72" x2="192" y2="72"/><circle class="trait" cx="95" cy="14" r="8"/><line class="trait" x1="95" y1="22" x2="95" y2="46"/><line class="trait" x1="95" y1="46" x2="130" y2="50"/><line class="trait" x1="130" y1="50" x2="132" y2="72"/><line class="trait" x1="95" y1="46" x2="72" y2="66"/><line class="trait" x1="72" y1="66" x2="52" y2="70"/><path class="fleche" d="M160 40 v20 m0 0 l-4 -5 m4 5 l4 -5"/></svg>`,
@@ -416,15 +492,15 @@ etirement:`<svg viewBox="0 0 200 80"><line class="sol" x1="8" y1="72" x2="192" y
 
 /* ============ BIBLIOTHÈQUE D'EXERCICES ============ */
 const EX = {
-chest:{n:"Développé couché machine",svg:"pompes",a:"Dossier réglé pour que les poignées arrivent au niveau des pectoraux, pas des épaules. Poussez sans verrouiller les coudes, revenez lentement. Omoplates serrées contre le dossier pendant tout le mouvement.",yt:"chest press machine technique"},
-latpull:{n:"Tirage vertical poulie haute",svg:"tirage",a:"Prise large, tirez la barre vers le haut de la poitrine et non derrière la nuque. Le mouvement part des coudes, pas des mains : pensez à ramener les coudes vers les hanches en serrant les omoplates.",yt:"tirage vertical poulie haute technique"},
-rowassis:{n:"Rowing assis poulie basse",svg:"tirage",a:"Dos droit, buste immobile — c'est le dos qui tire, pas le balancement. Tirez la poignée vers le nombril, serrez une seconde, revenez lentement en gardant les épaules basses.",yt:"rowing assis poulie basse technique"},
-epaules:{n:"Développé épaules machine",svg:"dips",a:"Poignées au niveau des oreilles au départ. Poussez vers le haut sans cambrer le bas du dos ; si vous devez cambrer, la charge est trop lourde. C'est l'articulation la plus fragile : ne cherchez jamais la charge maximale ici.",yt:"shoulder press machine technique"},
-pecdeck:{n:"Pec deck (butterfly)",svg:"pompes",a:"Coudes légèrement fléchis et fixes, à hauteur d'épaules. Ramenez les bras devant vous en fermant la poitrine, marquez une seconde, puis laissez revenir lentement sans relâcher d'un coup.",yt:"pec deck butterfly technique"},
-curlpoulie:{n:"Curl biceps à la poulie basse",svg:"curl",a:"Coudes collés au corps et immobiles : seuls les avant-bras bougent. Pas de balancement du buste — si le dos travaille, la charge est trop lourde.",yt:"curl biceps poulie basse technique"},
-tricepspoulie:{n:"Extension triceps à la corde",svg:"dips",a:"Coudes serrés le long du corps, seuls les avant-bras descendent. Écartez légèrement la corde en fin de mouvement pour aller chercher la contraction complète.",yt:"extension triceps corde poulie haute"},
-deadbug:{n:"Dead bug",svg:"crunch",a:"Allongé sur le dos, bras et jambes en l'air. Descendez un bras et la jambe opposée très lentement, sans que le bas du dos décolle du tapis. C'est la lenteur qui fait l'exercice, pas le nombre.",yt:"dead bug exercice abdos technique"},
-vacuum:{n:"Vacuum abdominal",svg:"gainage",a:"Expirez tout l'air, puis rentrez le ventre en le remontant sous les côtes et tenez sans respirer. C'est le seul exercice qui renforce le transverse — la ceinture profonde qui resserre mécaniquement le tour de taille.",yt:"vacuum abdominal transverse technique"},
+chest:{n:"Développé couché machine",svg:"chestM",a:"Dossier réglé pour que les poignées arrivent au niveau des pectoraux, pas des épaules. Poussez sans verrouiller les coudes, revenez lentement. Omoplates serrées contre le dossier pendant tout le mouvement.",yt:"chest press machine technique"},
+latpull:{n:"Tirage vertical poulie haute",svg:"latpullM",a:"Prise large, tirez la barre vers le haut de la poitrine et non derrière la nuque. Le mouvement part des coudes, pas des mains : pensez à ramener les coudes vers les hanches en serrant les omoplates.",yt:"tirage vertical poulie haute technique"},
+rowassis:{n:"Rowing assis poulie basse",svg:"rowM",a:"Dos droit, buste immobile — c'est le dos qui tire, pas le balancement. Tirez la poignée vers le nombril, serrez une seconde, revenez lentement en gardant les épaules basses.",yt:"rowing assis poulie basse technique"},
+epaules:{n:"Développé épaules machine",svg:"epaulesM",a:"Poignées au niveau des oreilles au départ. Poussez vers le haut sans cambrer le bas du dos ; si vous devez cambrer, la charge est trop lourde. C'est l'articulation la plus fragile : ne cherchez jamais la charge maximale ici.",yt:"shoulder press machine technique"},
+pecdeck:{n:"Pec deck (butterfly)",svg:"pecdeckM",a:"Coudes légèrement fléchis et fixes, à hauteur d'épaules. Ramenez les bras devant vous en fermant la poitrine, marquez une seconde, puis laissez revenir lentement sans relâcher d'un coup.",yt:"pec deck butterfly technique"},
+curlpoulie:{n:"Curl biceps à la poulie basse",svg:"curlM",a:"Coudes collés au corps et immobiles : seuls les avant-bras bougent. Pas de balancement du buste — si le dos travaille, la charge est trop lourde.",yt:"curl biceps poulie basse technique"},
+tricepspoulie:{n:"Extension triceps à la corde",svg:"tricepsM",a:"Coudes serrés le long du corps, seuls les avant-bras descendent. Écartez légèrement la corde en fin de mouvement pour aller chercher la contraction complète.",yt:"extension triceps corde poulie haute"},
+deadbug:{n:"Dead bug",svg:"deadbugM",a:"Allongé sur le dos, bras et jambes en l'air. Descendez un bras et la jambe opposée très lentement, sans que le bas du dos décolle du tapis. C'est la lenteur qui fait l'exercice, pas le nombre.",yt:"dead bug exercice abdos technique"},
+vacuum:{n:"Vacuum abdominal",svg:"vacuumM",a:"Expirez tout l'air, puis rentrez le ventre en le remontant sous les côtes et tenez sans respirer. C'est le seul exercice qui renforce le transverse — la ceinture profonde qui resserre mécaniquement le tour de taille.",yt:"vacuum abdominal transverse technique"},
 pompes:{n:"Pompes",svg:"pompes",a:"Corps rigide comme une planche, coudes à 45°, poitrine à 5 cm du sol. Trop dur ? Sur les genoux.",yt:"pompes technique parfaite"},
 squat:{n:"Squats",svg:"squat",a:"Pieds largeur épaules, poids sur les talons, descendre genoux à 90°, dos droit.",yt:"squat poids du corps technique"},
 fente:{n:"Fentes alternées",svg:"fente",a:"Grand pas devant, genou arrière vers le sol, genou avant à 90° au-dessus de la cheville.",yt:"fentes avant technique"},
