@@ -2819,8 +2819,14 @@ function graphMesures(){
   }
 
   let g=`<svg viewBox="0 0 ${W} ${H}" class="bilan-graph">`;
-  g+=panneau("Poids (kg)","poids",69.5,76.5,[70,72,74,76],72.5,"objectif ≤ 72,5","#C9822E","#EBD3B4",true);
-  g+=`<g transform="translate(0 ${PH+GAP})">`+panneau("Tour de taille (cm)","taille",79,97,[80,82,86,90,96],80,"objectif ≤ 80 · 13 déc","#1B7A8C","#B6D9E0",false)+`</g>`;
+  // echelles calculees sur les donnees : la courbe ne peut jamais sortir du cadre
+  const pv=pts.map(p=>p.poids).filter(Number.isFinite), tv=pts.map(p=>p.taille).filter(Number.isFinite);
+  const pMin=Math.floor(Math.min(...pv,72.5))-0.5, pMax=Math.ceil(Math.max(...pv,72.5))+0.5;
+  const pTicks=[]; for(let v=Math.ceil(pMin);v<=pMax;v+=(pMax-pMin>12?4:2))pTicks.push(v);
+  const tMin=Math.floor(Math.min(...tv,80))-1, tMax=Math.ceil(Math.max(...tv,80))+1;
+  const tTicks=[]; for(let v=Math.ceil(tMin/2)*2;v<=tMax;v+=(tMax-tMin>24?4:2))tTicks.push(v);
+  g+=panneau("Poids (kg)","poids",pMin,pMax,pTicks,72.5,"cible été ≤ 72,5","#C9822E","#EBD3B4",true);
+  g+=`<g transform="translate(0 ${PH+GAP})">`+panneau("Tour de taille (cm)","taille",tMin,tMax,tTicks,80,"objectif ≤ 80 · 13 déc","#1B7A8C","#B6D9E0",false)+`</g>`;
   g+=`</svg>`;
   return g;
 }
